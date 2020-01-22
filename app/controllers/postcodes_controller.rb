@@ -1,11 +1,6 @@
 class PostcodesController < ApplicationController
 	include PostcodesIo
 
-	WANTED_LSOA = [
-		"lamberth",
-		"waterloo",
-	]
-
 	def show
 		render form
 	end

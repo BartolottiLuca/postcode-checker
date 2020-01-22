@@ -1,5 +1,10 @@
 module Postcodes
 
+	WANTED_LSOA = [
+		"lambeth",
+		"southwark",
+	]
+
 	def is_postcode_valid?(postcode)
 		# api call to validate
 	end
