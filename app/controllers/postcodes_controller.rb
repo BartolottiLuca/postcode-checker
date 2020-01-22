@@ -8,8 +8,9 @@ class PostcodesController < ApplicationController
 	def check
 		# get postcode from textbox
 		postcode = "SE17QL"
-		if is_postcode_valid?(postcode)
-			details = get_postcode_details(postcode)
+		postcodes_io = Postcodes.new
+		if postcodes_io.is_postcode_valid?(postcode)
+			details = postcodes_io.get_postcode_details(postcode)
 
 			if details[:lsoa].downcase.start_with?(*WANTED_LSOA)
 				render success # whatever
