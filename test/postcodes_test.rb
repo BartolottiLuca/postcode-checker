@@ -12,13 +12,13 @@ class PostcodesTest < ActiveSupport::TestCase
 	end
 
 	test 'postcode in Lambeth' do
-		details = postcodes.get_postcode_details ("SE11 6SP")
-		assert_equal true, details[:lsoa].downcase.start_with("lambeth")
+		details = postcodes.get_postcode_details("SE116SP")
+		assert_equal true, details[:lsoa]&.downcase&.starts_with?("lambeth")
 	end
 
 	test 'postcode in Southwark' do
-		details = postcodes.get_postcode_details ("SE1 7QL")
-		assert_equal true, details[:lsoa].downcase.start_with("southwark")
+		details = postcodes.get_postcode_details("SE17QL")
+		assert_equal true, details[:lsoa]&.downcase&.starts_with?("southwark")
 	end
 
 	test 'details of invalid postcode' do
