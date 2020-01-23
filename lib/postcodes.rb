@@ -14,7 +14,7 @@ class Postcodes
 	base_uri 'https://api.postcodes.io'
 
 	def self.check_postcode(postcode)
-		if SPECIAL_POSTCODES.inlcude?(postcode.gsub(" ", "").upcase)
+		if SPECIAL_POSTCODES.include?(postcode.gsub(" ", "").upcase)
 			Rails.logger.info("INFO:	valid postcode is in one of the lsoa areas")
 			return "The postcode is IN one of the desired lsoa areas"
 		else
