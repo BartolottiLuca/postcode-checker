@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # API funfair
 gem 'httparty', '~> 0.13.7'
 
+# debug purpose
+gem 'pry-byebug', '~>  3.7'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
