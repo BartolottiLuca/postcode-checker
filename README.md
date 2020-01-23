@@ -5,6 +5,8 @@ Installation steps:
  - run `bundle install`
  - you might need to run `yarn install --check-files`
 
+Run the app with `bundle exec rails server` and visit localhost:3000
+
 To run the test simply run `bundle exec rails test`
 
 # postcode-checker
