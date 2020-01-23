@@ -5,12 +5,17 @@
 	<title>Postcode Checker</title>
 </head>
 <body>
-<form action="check">
+<form action="show">
 	Enter the postcode to check.
 	<br>
 	<input type="text" name="postcode">
 	<br>
 	<input type="submit"/>
 </form>
+<br>
+<% if @result.present? %>
+	<%= @result %>
+<% end %>
+<br>
 </body>
 </html>
