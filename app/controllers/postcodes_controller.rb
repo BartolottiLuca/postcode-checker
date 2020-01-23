@@ -1,24 +1,22 @@
 class PostcodesController < ApplicationController
-	include PostcodesIo
 
 	def show
-		render form
 	end
 
 	def check
 		# get postcode from textbox
-		postcode = "SE17QL"
-		postcodes_io = Postcodes.new
-		if postcodes_io.is_postcode_valid?(postcode)
+		postcode = params["postcode"]
+		postcodes_io = ::Postcodes.new
+		if postcode.present? && postcodes_io.is_postcode_valid?(postcode)
 			details = postcodes_io.get_postcode_details(postcode)
 
-			if details[:lsoa].downcase.start_with?(*WANTED_LSOA)
-				render success # whatever
+			if details[:lsoa].downcase.start_with?(*::Postcodes::WANTED_LSOA)
+				@result = "The postcode is IN one of the desired lsoa areas"
 			else
-				render failure # whatever
+				@result = "The postcode is OUTSIDE the desired lsoa areas"
 			end
 		else
-			render invalid #whatever dude
+			@result = "The postcode is OUTSIDE the desired lsoa areas"
 		end
 	end
 end
