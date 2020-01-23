@@ -6,23 +6,33 @@ class Postcodes
 		"southwark",
 	]
 
+	SPECIAL_POSTCODES = [
+		"SH241AB",
+		"SH241AA"
+	]
+
 	base_uri 'https://api.postcodes.io'
 
 	def self.check_postcode(postcode)
-		if self.is_postcode_valid?(postcode)
-			Rails.logger.info("INFO:	received a valid postcode")
-			details = self.get_postcode_details(postcode)
-
-			if details[:lsoa].downcase.start_with?(*::Postcodes::WANTED_LSOA)
-				Rails.logger.info("INFO:	valid postcode is in one of the lsoa areas")
-				return "The postcode is IN one of the desired lsoa areas"
-			else
-				Rails.logger.info("INFO:	valid postcode is outside the lsoa areas")
-				return "The postcode is OUTSIDE the desired lsoa areas"
-			end
+		if SPECIAL_POSTCODES.inlcude?(postcode.gsub(" ", "").upcase)
+			Rails.logger.info("INFO:	valid postcode is in one of the lsoa areas")
+			return "The postcode is IN one of the desired lsoa areas"
 		else
-			Rails.logger.info("INFO:	received an invalid postcode")
-			return "INVALID postcode specified"
+			if self.is_postcode_valid?(postcode)
+				Rails.logger.info("INFO:	received a valid postcode")
+				details = self.get_postcode_details(postcode)
+
+				if details[:lsoa].downcase.start_with?(*::Postcodes::WANTED_LSOA)
+					Rails.logger.info("INFO:	valid postcode is in one of the lsoa areas")
+					return "The postcode is IN one of the desired lsoa areas"
+				else
+					Rails.logger.info("INFO:	valid postcode is outside the lsoa areas")
+					return "The postcode is OUTSIDE the desired lsoa areas"
+				end
+			else
+				Rails.logger.info("INFO:	received an invalid postcode")
+				return "INVALID postcode specified"
+			end
 		end
 	end
 
