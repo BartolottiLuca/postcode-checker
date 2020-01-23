@@ -1,25 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Installation steps:
 
-Things you may want to cover:
+ - clone the repo and run `bundle install`
 
-* Ruby version
+To run the test simply run `bundle exec rails test
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # postcode-checker
+Simple application meant to check if a postcode is in the Lambteth or Southwark lsoa area using the postcodes.io APIs 
